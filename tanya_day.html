@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Application</title>
+    <link rel="stylesheet" href="detectivetheme.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div class="chat-box" id="chat-box">
+            <div class="chat-message">
+                <span class="user-name">Kudo shinichi:</span> Hi, mori tanchan!
+            </div>
+            <div class="chat-message">
+                <span class="user-name">Kudo shinichi:</span> Today is Tanchan's day, right?
+            </div>
+            <div class="chat-message">
+                <span class="user-name">Conan (assistant):</span> please send "yes" or "no"
+            </div>
+        </div>
+        <div class="profile-picture">
+            <img src="ran.jpg" alt="Profile Picture">
+          </div>
+        <input type="text" id="user-input" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            var userInput = document.getElementById("user-input").value;
+            var chatBox = document.getElementById("chat-box");
+            var newMessage = document.createElement("div");
+            newMessage.classList.add("chat-message");
+            newMessage.innerHTML = '<span class="user-name">Me:</span> ' + userInput;
+            chatBox.appendChild(newMessage);
+            document.getElementById("user-input").value = "";
+
+            // Check if the message is the specific question
+            if (userInput.toLowerCase().trim() === 'yes' || userInput.toLowerCase().trim() === 'no') {
+                setTimeout(function() {
+                    var response = document.createElement("div");
+                    response.classList.add("chat-message");
+                    response.innerHTML = '<span class="user-name">Kudo shinichi:</span> ok Whatever you say yes or no, i have a  little gift for you!.';
+                    chatBox.appendChild(response);
+
+                    var linkMessage = document.createElement("div");
+                    linkMessage.classList.add("chat-message");
+                    linkMessage.innerHTML = '<span class="user-name">Kudo shinichi:</span> <a href="https://www.canva.com/design/DAGC4G2HizU/c4NvIqpJkMYyUXNVMMdvUA/view?utm_content=DAGC4G2HizU&utm_campaign=designshare&utm_medium=link&utm_source=editor">for Mori Tan! <3 </a>';
+                    chatBox.appendChild(linkMessage);
+                }, 1000);
+            } else if (userInput.toLowerCase().includes("tanya's day")) {
+                setTimeout(function() {
+                    var response = document.createElement("div");
+                    response.classList.add("chat-message");
+                    response.innerHTML = '<span class="user-name">Conan:</span> Today is Tanya\'s day. Please send \'yes\' or \'no\'.';
+                    chatBox.appendChild(response);
+                }, 1000);
+            }
+        }
+    </script>
+</body>
+</html>
